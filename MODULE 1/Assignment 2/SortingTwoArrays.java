@@ -6,6 +6,11 @@ final class SortingTwoArrays {
 
     }
 
+    /**
+     * The following function will print the elememnts in sorted way.
+     *
+     * @param args inline args.
+     */
     public static void main(final String[] args) {
         final int three = 3;
         final int five = 5;

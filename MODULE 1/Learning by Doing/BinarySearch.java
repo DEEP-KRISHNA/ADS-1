@@ -7,6 +7,12 @@ final class BinarySearch {
 
     }
 
+    /**
+     * in the follwing main elements are searched in binary search method.
+     * prerequisite for this is already elements should be in sorted order.
+     * 
+     * @param args inline args
+     */
     public static void main(final String[] args) {
         final int one = 1;
         final int two = 2;

@@ -6,6 +6,11 @@ public final class ThreeSum {
 
     }
 
+    /**
+     * the following is implementation of 3 sum problem.
+     *
+     * @param args inline arguments.
+     */
     public static void main(final String[] args) {
         final int[] arr = { -40, -20, -10, 0, 5, 10, 30, 40 };
         int sumOfTwo = 0;
