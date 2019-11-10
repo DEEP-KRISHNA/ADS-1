@@ -1,5 +1,10 @@
 import java.util.Arrays;
 
+/**
+ * The following is the implementation of Hashing using linear probing.
+ * 
+ * @author Sandeep Kolli
+ */
 class LinearProbing {
     private final int initialSize = 15; // inittial Size of the array.
     private final int randomPrime = 31; // Prime number for hashing helps in generating unique keys.
