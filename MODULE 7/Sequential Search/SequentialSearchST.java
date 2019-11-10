@@ -134,4 +134,23 @@ final public class SequentialSearchST<Key extends Comparable<Key>, Value extends
         }
     }
 
+    public static void main(String[] args) {
+        SequentialSearchST<String, Integer>[] SymbolTable = new SequentialSearchST[10];
+        SymbolTable[0] = new SequentialSearchST<String, Integer>();
+        SymbolTable[0].put("S", 0);
+        SymbolTable[0].put("E", 1);
+        SymbolTable[0].put("A", 2);
+        SymbolTable[0].put("R", 3);
+        SymbolTable[0].put("C", 4);
+        SymbolTable[0].put("H", 5);
+        SymbolTable[0].put("E", 6);
+        SymbolTable[0].put("X", 7);
+        SymbolTable[0].put("A", 8);
+        SymbolTable[0].put("M", 9);
+        SymbolTable[0].put("P", 10);
+        SymbolTable[0].put("L", 11);
+        SymbolTable[0].put("E", 12);
+        SymbolTable[0].print();
+    }
+
 }
