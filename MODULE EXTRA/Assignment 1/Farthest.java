@@ -16,7 +16,7 @@ public class Farthest {
                 double temp = sc.nextDouble(); // Take input for each element.
                 arr[i] = temp;
             }
-            if (n > 0) {
+            if (n >= 0) {
                 double max = arr[0];
                 double min = arr[0];
                 for (int i = 0; i < n; i++) {
