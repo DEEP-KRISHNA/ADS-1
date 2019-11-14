@@ -16,20 +16,24 @@ public class Farthest {
                 double temp = sc.nextDouble(); // Take input for each element.
                 arr[i] = temp;
             }
-            double max = arr[1];
-            double min = arr[1];
-            for (int i = 0; i < n; i++) {
-                if (arr[i] < min) {
-                    min = arr[i];// min value gets updated if it find new min.
+            if (n > 0) {
+                double max = arr[0];
+                double min = arr[0];
+                for (int i = 0; i < n; i++) {
+                    if (arr[i] < min) {
+                        min = arr[i];// min value gets updated if it find new min.
+                    }
+                    if (arr[i] > max) {
+                        max = arr[i];// max value gets updated if it find new max.
+                    }
                 }
-                if (arr[i] > max) {
-                    max = arr[i];// max value gets updated if it find new max.
-                }
+                System.out.println("The max element in the array is : " + max);
+                System.out.println("The min element in the array is : " + min);
+                double disp = max - min;
+                System.out.println("The max difference possible in the given array : " + disp);
+            } else {
+                System.out.println("Array size must be greater than zero");
             }
-            System.out.println("The max element in the array is : " + max);
-            System.out.println("The min element in the array is : " + min);
-            double disp = max - min;
-            System.out.println("The max difference possible in the given array : " + disp);
 
         } catch (Exception e) {
             System.out.println("int or double is expected");
