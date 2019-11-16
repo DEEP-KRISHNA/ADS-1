@@ -1,4 +1,9 @@
+
 import java.util.Scanner;
+
+/**
+ * @author Sandeep Kolli. (2019501035)
+ */
 
 public class DeckSort {
     public int check(String str) {
