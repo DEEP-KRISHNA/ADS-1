@@ -17,7 +17,15 @@ public class Point implements Comparable<Point> {
 
     private class pointComparator implements Comparator<Point> {
         public int compare(Point a, Point b) {
-            return a.x - b.x;
+            double slope1 = slopeTo(a);
+            double slope2 = slopeTo(b);
+            if (slope1 > slope2) {
+                return 1;
+            } else if (slope1 < slope2) {
+                return -1;
+            } else {
+                return 0;
+            }
         }
     }
 
