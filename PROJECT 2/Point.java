@@ -10,6 +10,7 @@
  ******************************************************************************/
 
 import java.util.Comparator;
+import edu.princeton.cs.algs4.StdDraw;
 
 // import edu.princeton.cs.algs4.StdDraw;
 
@@ -76,6 +77,9 @@ public class Point implements Comparable<Point> {
      */
     public double slopeTo(Point that) {
         /* YOUR CODE HERE */
+        if (that == null) {
+            throw new NullPointerException();
+        }
         if ((this.y == that.y) && (this.x == that.x))
             return Double.NEGATIVE_INFINITY;
         else if (this.x == that.x)
@@ -99,13 +103,16 @@ public class Point implements Comparable<Point> {
      */
     public int compareTo(Point that) {
         /* YOUR CODE HERE */
+        if (that == null) {
+            throw new NullPointerException();
+        }
         if (this.y < that.y) {
             return -1;
         } else if (this.y > that.y) {
             return 1;
         } else if (this.x < that.x) {
             return -1;
-        } else if (this.x > that.y) {
+        } else if (this.x > that.x) {
             return 1;
         } else {
             return 0;

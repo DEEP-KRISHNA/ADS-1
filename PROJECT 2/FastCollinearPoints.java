@@ -1,52 +1,56 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.Collections;
+import edu.princeton.cs.algs4.StdDraw;
+import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.StdIn;
 
 public class FastCollinearPoints {
     private ArrayList<LineSegment> lines = new ArrayList<LineSegment>();
 
     // finds all line segments containing 4 or more points
     public FastCollinearPoints(Point[] points) {
-        Point[] newPoints = points;
+        if (points == null) {
+            throw new IllegalArgumentException();
+        }
+        Point[] newPoints = points.clone();
+
+        for (int i = 0; i < newPoints.length; i++) {
+            if (newPoints[i] == null) {
+                throw new IllegalArgumentException();
+            }
+        }
+        Arrays.sort(newPoints);
+        for (int i = 0; i < newPoints.length - 1; i++) {
+            if (newPoints[i].compareTo(newPoints[i + 1]) == 0) {
+                throw new IllegalArgumentException();
+            }
+        }
         for (int i = 0; i < newPoints.length; i++) {
             Arrays.sort(newPoints);
             Point org = newPoints[i];
             Arrays.sort(newPoints, org.slopeOrder());
-            System.out.println("for " + i + " loop " + org.toString());
-            for (int j = 0; j < newPoints.length; j++) {
-                System.out.println(newPoints[j].toString() + " " + org.slopeTo(newPoints[j]));
-            }
-
-            HashMap<Double, Integer> hash = new HashMap<Double, Integer>();
-            for (int j = 0; j < newPoints.length; j++) {
-                if (hash.containsKey(newPoints[i].slopeTo(newPoints[j]))) {
-                    hash.put(newPoints[i].slopeTo(newPoints[j]), hash.get(newPoints[i].slopeTo(newPoints[j])) + 1);
+            ArrayList<Point> fourPoints = new ArrayList<Point>();
+            fourPoints.add(org);
+            for (int j = 0; j < newPoints.length - 1; j++) {
+                if ((org.slopeTo(newPoints[j])) == (org.slopeTo(newPoints[j + 1]))) {
+                    fourPoints.add(newPoints[j]);
+                    fourPoints.add(newPoints[j + 1]);
                 } else {
-                    hash.put(newPoints[i].slopeTo(newPoints[j]), 1);
-                }
-            }
-            ArrayList<Double> keysFin = new ArrayList<Double>();
-            Iterator keyIt = hash.keySet().iterator();
-            System.out.println();
-            while (keyIt.hasNext()) {
-                double temp = (double) keyIt.next();
-                if (hash.get(temp) >= 3) {
-                    keysFin.add(temp);
-                }
-            }
-            double tk = -969.9999;
-            for (int j = 0; j < newPoints.length; j++) {
-                if (keysFin.contains(newPoints[i].slopeTo(newPoints[j]))) {
-                    if (tk != newPoints[i].slopeTo(newPoints[j])) {
-                        tk = newPoints[i].slopeTo(newPoints[j]);
-                        System.out.println();
-                        System.out.println(newPoints[i]);
-                        System.out.println(newPoints[j]);
+                    if (fourPoints.size() >= 5) {
+                        Collections.sort(fourPoints);
+                        lines.add(new LineSegment(fourPoints.get(0), fourPoints.get(fourPoints.size() - 1)));
+                        fourPoints = new ArrayList<Point>();
+                        fourPoints.add(org);
                     } else {
-                        System.out.println(newPoints[j]);
+                        fourPoints = new ArrayList<Point>();
+                        fourPoints.add(org);
                     }
                 }
+            }
+            if (fourPoints.size() >= 5) {
+                Collections.sort(fourPoints);
+                lines.add(new LineSegment(fourPoints.get(0), fourPoints.get(fourPoints.size() - 1)));
             }
         }
     }

@@ -1,4 +1,8 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import edu.princeton.cs.algs4.StdDraw;
+import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.StdIn;
 
 public class BruteCollinearPoints {
 
@@ -6,10 +10,24 @@ public class BruteCollinearPoints {
 
     // finds all line segments containing 4 points.
     public BruteCollinearPoints(Point[] points) {
-        Point[] pointsList = points;
+        if (points == null) {
+            throw new IllegalArgumentException();
+        }
+        Point[] pointsList = points.clone();
+        for (int i = 0; i < pointsList.length; i++) {
+            if (pointsList[i] == null) {
+                throw new IllegalArgumentException();
+            }
+        }
         boolean condition1;
         boolean condition2;
         boolean condition3;
+        Arrays.sort(pointsList);
+        for (int i = 0; i < pointsList.length - 1; i++) {
+            if (pointsList[i].compareTo(pointsList[i + 1]) == 0) {
+                throw new IllegalArgumentException();
+            }
+        }
         for (int i = 0; i < pointsList.length - 3; i++) {
             for (int j = i + 1; j < pointsList.length - 2; j++) {
                 for (int k = j + 1; k < pointsList.length - 1; k++) {
@@ -24,7 +42,7 @@ public class BruteCollinearPoints {
                                     && (pointsList[j].compareTo(pointsList[k]) != 0)
                                     && (pointsList[k].compareTo(pointsList[l]) != 0));
                             if (condition1 && condition2 && condition3) {
-                                lines.add(new LineSegment(points[i], points[l]));
+                                lines.add(new LineSegment(pointsList[i], pointsList[l]));
                             }
                         }
                     }
@@ -40,7 +58,7 @@ public class BruteCollinearPoints {
 
     // the line segments
     public LineSegment[] segments() {
-        LineSegment[] newLines = new LineSegment[lines.size()];
+        LineSegment[] newLines = new LineSegment[lines.size()];+
         for (int i = 0; i < lines.size(); i++) {
             newLines[i] = lines.get(i);
         }

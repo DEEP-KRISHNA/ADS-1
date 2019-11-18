@@ -1,0 +1,30 @@
+HashMap<Double, Integer> hash = new HashMap<Double, Integer>();
+            for (int j = 0; j < newPoints.length; j++) {
+                if (hash.containsKey(newPoints[i].slopeTo(newPoints[j]))) {
+                    hash.put(newPoints[i].slopeTo(newPoints[j]), hash.get(newPoints[i].slopeTo(newPoints[j])) + 1);
+                } else {
+                    hash.put(newPoints[i].slopeTo(newPoints[j]), 1);
+                }
+            }
+            ArrayList<Double> keysFin = new ArrayList<Double>();
+            Iterator keyIt = hash.keySet().iterator();
+            System.out.println();
+            while (keyIt.hasNext()) {
+                double temp = (double) keyIt.next();
+                if (hash.get(temp) >= 3) {
+                    keysFin.add(temp);
+                }
+            }
+            double tk = -969.9999;
+            for (int j = 0; j < newPoints.length; j++) {
+                if (keysFin.contains(newPoints[i].slopeTo(newPoints[j]))) {
+                    if (tk != newPoints[i].slopeTo(newPoints[j])) {
+                        tk = newPoints[i].slopeTo(newPoints[j]);
+                        System.out.println();
+                        System.out.println(newPoints[i]);
+                        System.out.println(newPoints[j]);
+                    } else {
+                        System.out.println(newPoints[j]);
+                    }
+                }
+            }
