@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import edu.princeton.cs.algs4.StdDraw;
-import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.StdIn;
+// import edu.princeton.cs.algs4.StdDraw;
+// import edu.princeton.cs.algs4.StdOut;
+// import edu.princeton.cs.algs4.StdIn;
 
 public class FastCollinearPoints {
     private ArrayList<LineSegment> lines = new ArrayList<LineSegment>();
@@ -38,9 +38,18 @@ public class FastCollinearPoints {
                     fourPoints.add(newPoints[j + 1]);
                 } else {
                     if (fourPoints.size() >= 5) {
+                        Point[] fourtemp = new Point[fourPoints.size()];
+                        for (int k = 0; k < fourPoints.size(); k++) {
+                            fourtemp[k] = fourPoints.get(k);
+                        }
                         Collections.sort(fourPoints);
-                        LineSegment temp = new LineSegment(fourPoints.get(0), fourPoints.get(fourPoints.size() - 1));
-                        boolean ans = lines.contains(temp);
+                        boolean ans = false;
+                        for (int k = 0; k < fourPoints.size(); k++) {
+                            if (fourtemp[k].compareTo(fourPoints.get(k)) == 0) {
+                                ans = true;
+                            }
+                        }
+
                         if (ans == false) {
                             lines.add(new LineSegment(fourPoints.get(0), fourPoints.get(fourPoints.size() - 1)));
                             fourPoints = new ArrayList<Point>();
@@ -53,14 +62,25 @@ public class FastCollinearPoints {
                 }
             }
             if (fourPoints.size() >= 5) {
+                Point[] fourtemp = new Point[fourPoints.size()];
+                for (int k = 0; k < fourPoints.size(); k++) {
+                    fourtemp[k] = fourPoints.get(k);
+                }
                 Collections.sort(fourPoints);
-                LineSegment temp = new LineSegment(fourPoints.get(0), fourPoints.get(fourPoints.size() - 1));
-                boolean ans = lines.contains(temp);
+                boolean ans = false;
+                for (int k = 0; k < fourPoints.size(); k++) {
+                    if (fourtemp[k].compareTo(fourPoints.get(k)) == 0) {
+                        ans = true;
+                    }
+                }
                 if (ans == false) {
                     lines.add(new LineSegment(fourPoints.get(0), fourPoints.get(fourPoints.size() - 1)));
+                    fourPoints = new ArrayList<Point>();
+                    fourPoints.add(org);
                 }
             }
         }
+
     }
 
     // the number of line segments
