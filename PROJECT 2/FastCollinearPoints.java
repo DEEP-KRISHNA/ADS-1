@@ -28,12 +28,12 @@ public class FastCollinearPoints {
         }
         for (int i = 0; i < newPoints.length; i++) {
             Arrays.sort(newPoints);
-            Point org = newPoints[i];
-            Arrays.sort(newPoints, org.slopeOrder());
+            Point new_refer = newPoints[i];
+            Arrays.sort(newPoints, new_refer.slopeOrder());
             ArrayList<Point> fourPoints = new ArrayList<Point>();
-            fourPoints.add(org);
+            fourPoints.add(new_refer);
             for (int j = 0; j < newPoints.length - 1; j++) {
-                if ((org.slopeTo(newPoints[j])) == (org.slopeTo(newPoints[j + 1]))) {
+                if ((new_refer.slopeTo(newPoints[j])) == (new_refer.slopeTo(newPoints[j + 1]))) {
                     fourPoints.add(newPoints[j]);
                     fourPoints.add(newPoints[j + 1]);
                 } else {
@@ -44,11 +44,11 @@ public class FastCollinearPoints {
                         if (ans == false) {
                             lines.add(new LineSegment(fourPoints.get(0), fourPoints.get(fourPoints.size() - 1)));
                             fourPoints = new ArrayList<Point>();
-                            fourPoints.add(org);
+                            fourPoints.add(new_refer);
                         }
                     } else {
                         fourPoints = new ArrayList<Point>();
-                        fourPoints.add(org);
+                        fourPoints.add(new_refer);
                     }
                 }
             }
